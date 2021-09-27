@@ -6,31 +6,31 @@
   
   if($_POST) {
 
- $Correo_electronico = $_POST['Correo_electronico'];
- $Contraseña= $_POST['Contraseña'];
+ $Correo_electronico= $_POST['Correo_electronico'];
+ $Password= $_POST['Password'];
 
 
-$sql = "SELECT Id, Contraseña, Nombre, Tipo_usuario  FROM roles WHERE Correo_electronico= '$Correo_electronico'";
+$sql = "SELECT  Id, Password, Nombre, Tipo_usuario  FROM roles WHERE Correo_electronico= '$Correo_electronico'";
 echo $sql;
 $resultado = $mysqli ->query($sql);
 $num = $resultado->num_rows;
 
 If($num>0) {
 $row = $resultado->fetch_assoc();
-$Contraseña_bd = $row['Contraseña'];
+$Password_bd = $row['Password'];
 
 
-$pass_c = sha1($Contraseña);
+$pass_c =($Password);
 
 
-if ($Contraseña_bd == $pass_c){
+if ($Password_bd == $pass_c){
 
 
     $_SESSION['Id'] = $row['Id'];
     $_SESSION['Nombre'] = $row['Nombre'];
     $_SESSION['Tipo_usuario'] = $row['Tipo_usuario'];
 
-    header("Location: Principal.php");
+    header("Location: Index.php");
 
 } else {
 echo "La contraseña no coincide";
@@ -77,13 +77,13 @@ echo" No existe Correo";
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Inicio de sesion</h3></div>
                                     <div class="card-body">
-                                        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
+                                        <form method="POST"> 
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputEmail" name="Correo_electronico"type="email" placeholder="name@example.com" />
                                                 <label for="inputEmail"> Correo electronico</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" name="Contraseña"type="password" placeholder="Password" />
+                                                <input class="form-control" id="inputPassword" name="Password"type="password" placeholder="Password" />
                                                 <label for="inputPassword">Contraseña</label>
                                             </div>
                                             <div class="form-check mb-3">
@@ -92,7 +92,7 @@ echo" No existe Correo";
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="password.html">Has olvidado tu contraseña?</a>
-                                                <button type="submit"class="btn btn-primary" >Ingresar</button>
+                                                <button class="btn btn-primary account-btn" type="submit" name="btnIngresar" value="Ingresar">Ingresar</button> 
                                             </div>
                                         </form>
                                     </div>

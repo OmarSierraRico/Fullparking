@@ -3,11 +3,12 @@
 session_start();
 
 if(!isset($_SESSION¨['Id'])){
-header("Location: Index.php");
 
 
 
+header("Location: Principal.php");
 }
+
 
 $Nombre = $_SESSION['Nombre'];
 
@@ -54,7 +55,7 @@ $Nombre = $_SESSION['Nombre'];
                         <li><a class="dropdown-item" href="#!">Colaborador</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <!-- queda pendiente redirecionar el href de salir "login.html"-->
-                        <li><a class="dropdown-item" href="Logout.php">Salir</a></li>
+                        <a class="dropdown-item" href="Logout.php">Salir</a>
                     </ul>
                 </li>
             </ul>
